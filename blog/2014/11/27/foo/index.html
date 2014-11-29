@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>tech.farend</title>
+  <title>Octopressでの記事の書き方 - tech.farend</title>
   <meta name="author" content="">
 
   
@@ -19,7 +19,7 @@ bundle exec rake new_post["title"] &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://farend.github.io/tech">
+  <link rel="canonical" href="http://farend.github.io/tech/blog/2014/11/27/foo">
   <link href="/tech/favicon.png" rel="icon">
   <link href="/tech/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/tech/atom.xml" rel="alternate" title="tech.farend" type="application/atom+xml">
@@ -62,15 +62,12 @@ bundle exec rake new_post["title"] &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/tech/blog/2014/11/27/foo/">Octopressでの記事の書き方</a></h1>
+      <h1 class="entry-title">Octopressでの記事の書き方</h1>
     
     
       <p class="meta">
@@ -86,7 +83,7 @@ bundle exec rake new_post["title"] &hellip;">
   </header>
 
 
-  <div class="entry-content"><h2>記事のひな形の作成</h2>
+<div class="entry-content"><h2>記事のひな形の作成</h2>
 
 <p>コマンドラインで以下を実行すると記事のひな形が生成されます。生成されるひな形のファイル名は <code>source/_posts/YYYY-MM-DD-title.markdown</code> です。</p>
 
@@ -149,18 +146,50 @@ bundle exec rake new_post["title"] &hellip;">
 
 <p>なお、<code>bundle exec rake preview</code> によってwebサーバが起動している間は、記事を保存するとファイルが書き換えられたのが検知され、サイトの再生製が即時行われます。記事執筆中はwebサーバを立ち上げっぱなしにして、 ①少し書いて保存 ②自動で再生成 ③生成されたサイトをブラウザで確認 — のサイクルを繰り返すと作業しやすいと思います。</p>
 </div>
-  
+
+
+  <footer>
+    <p class="meta">
+      
   
 
 
-    </article>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-27T17:38:31+09:00'><span class='date'>2014/11/27</span> <span class='time'>5:38 pm</span></time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/tech/blog/categories/at-g-maeda/'>@g_maeda</a>, <a class='category' href='/tech/blog/categories/octpress/'>octpress</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/tech/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://farend.github.io/tech/blog/2014/11/27/foo/" data-via="" data-counturl="http://farend.github.io/tech/blog/2014/11/27/foo/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -180,6 +209,7 @@ bundle exec rake new_post["title"] &hellip;">
 
   
 </aside>
+
 
     </div>
   </div>
