@@ -3,7 +3,7 @@ layout: post
 title: "Octopressでの記事の書き方"
 date: 2014-11-27 17:38:31 +0900
 comments: true
-categories: ['@g_maeda', 'octpress']
+categories: ['@g_maeda', 'octopress']
 ---
 
 ## 記事のひな形の作成
@@ -47,7 +47,8 @@ categories: ['@g_maeda', 'octpress']
 
 * 半角英数文字のみ使用
 * アルファベットは小文字のみ使用
-* 記事の1個目のカテゴリはその記事の著者名を `@username` の形式で記述する。
+* 記事の1個目のカテゴリはその記事の著者名を `@username` の形式で記述する
+* カテゴリを増やしすぎない。なるべく既存のカテゴリを使用
 
 
 ### 本文の記述
