@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: @g_maeda | tech.farend]]></title>
-  <link href="http://farend.github.io/tech/blog/categories/at-g-maeda/atom.xml" rel="self"/>
-  <link href="http://farend.github.io/tech/"/>
-  <updated>2014-11-29T12:49:11+09:00</updated>
-  <id>http://farend.github.io/tech/</id>
+  <link href="http://tech.farend.jp//blog/categories/at-g-maeda/atom.xml" rel="self"/>
+  <link href="http://tech.farend.jp//"/>
+  <updated>2014-11-29T13:49:55+09:00</updated>
+  <id>http://tech.farend.jp//</id>
   <author>
     <name><![CDATA[]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopressでの記事の書き方]]></title>
-    <link href="http://farend.github.io/tech/blog/2014/11/27/foo/"/>
+    <link href="http://tech.farend.jp//blog/2014/11/27/foo/"/>
     <updated>2014-11-27T17:38:31+09:00</updated>
-    <id>http://farend.github.io/tech/blog/2014/11/27/foo</id>
+    <id>http://tech.farend.jp//blog/2014/11/27/foo</id>
     <content type="html"><![CDATA[<h2>記事のひな形の作成</h2>
 
 <p>コマンドラインで以下を実行すると記事のひな形が生成されます。生成されるひな形のファイル名は <code>source/_posts/YYYY-MM-DD-title.markdown</code> です。</p>
