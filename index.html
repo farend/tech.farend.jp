@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
@@ -8,8 +9,8 @@
   <meta name="author" content="">
 
   
-  <meta name="description" content="記事のひな形の作成 コマンドラインで以下を実行すると記事のひな形が生成されます。生成されるひな形のファイル名は source/_posts/YYYY-MM-DD-title.markdown です。 1
-bundle exec rake new_post["title"] &hellip;">
+  <meta name="description" content="Linuxサーバで外部ボリュームを起動時に自動的にマウントさせるには/etc/fstabに記載をすることで可能になるが、ubuntu（debian系全般の模様であるが）では外部ボリュームが自動マウント出来ないと、ホストは起動するがsshログインが出来ないようになる。
+これを回避するため、/etc/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,51 @@ bundle exec rake new_post["title"] &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/01/ubuntu-ext-volume/">ubuntuでの外部ボリュームマウントについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-01T18:25:44+09:00'><span class='date'>2014/12/01</span> <span class='time'>6:25 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Linuxサーバで外部ボリュームを起動時に自動的にマウントさせるには<code>/etc/fstab</code>に記載をすることで可能になるが、ubuntu（debian系全般の模様であるが）では外部ボリュームが自動マウント出来ないと、ホストは起動するがsshログインが出来ないようになる。<br/>
+これを回避するため、<code>/etc/fstab</code>の記載で <strong>nobootwait</strong> のオプションを追記する。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/dev/xvdf1       /mnt    ext4    defaults,nobootwait 0 0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この追記で起動時に待ち（！？）が発生せず、sshdも通常通り起動しログイン可能となる模様。</p>
+
+<p><strong>なお、AMAZON Linux（たぶんRedHat系全般と思われるが）では<code>nobootwait</code>の記載は無くてもホストはログイン可能の状態となった。</strong></p>
+
+<hr>
+
+
+<h5>情報ソース</h5>
+
+<p><a href="http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ebs-using-volumes.html">Amazon EBS ボリュームを使用できるようにする - Amazon Elastic Compute Cloud</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -180,6 +226,10 @@ bundle exec rake new_post["title"] &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/12/01/ubuntu-ext-volume/">ubuntuでの外部ボリュームマウントについて</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/27/octopress/">Octopressでの記事の書き方</a>
