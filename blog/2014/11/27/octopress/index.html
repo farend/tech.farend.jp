@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>tech.farend</title>
+  <title>Octopressでの記事の書き方 - tech.farend</title>
   <meta name="author" content="">
 
   
-  <meta name="description" content="Linuxサーバで外部ボリュームを起動時に自動的にマウントさせるには/etc/fstabに記載をすることで可能になるが、ubuntu（debian系全般の模様であるが）では外部ボリュームが自動マウント出来ないと、ホストは起動するがsshログインが出来ないようになる。
-これを回避するため、/etc/ &hellip;">
+  <meta name="description" content="記事のひな形の作成 コマンドラインで以下を実行すると記事のひな形が生成されます。生成されるひな形のファイル名は source/_posts/YYYY-MM-DD-title.markdown です。 1
+bundle exec rake new_post["title"] &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tech.farend.jp/">
+  <link rel="canonical" href="http://tech.farend.jp//blog/2014/11/27/octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="tech.farend" type="application/atom+xml">
@@ -76,182 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/12/01/ubuntu-ext-volume/">ubuntuでの外部ボリュームマウントについて</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-01T18:25:44+09:00'><span class='date'>2014/12/01</span> <span class='time'>6:25 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Linuxサーバで外部ボリュームを起動時に自動的にマウントさせるには<code>/etc/fstab</code>に記載をすることで可能になるが、ubuntu（debian系全般の模様であるが）では外部ボリュームが自動マウント出来ないと、ホストは起動するがsshログインが出来ないようになる。<br/>
-これを回避するため、<code>/etc/fstab</code>の記載で <strong>nobootwait</strong> のオプションを追記する。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/dev/xvdf1       /mnt    ext4    defaults,nobootwait 0 0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>この追記で起動時に待ち（！？）が発生せず、sshdも通常通り起動しログイン可能となる模様。</p>
-
-<p><strong>なお、AMAZON Linux（たぶんRedHat系全般と思われるが）では<code>nobootwait</code>の記載は無くてもホストはログイン可能の状態となった。</strong></p>
-
-<hr>
-
-
-<h5>情報ソース</h5>
-
-<p><a href="http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ebs-using-volumes.html">Amazon EBS ボリュームを使用できるようにする - Amazon Elastic Compute Cloud</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/01/shirasagi/">SHIRASAGIで始めにやったこと</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-01T16:39:34+09:00'><span class='date'>2014/12/01</span> <span class='time'>4:39 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>サイトの作成</h2>
-
-<p>SHIRASAGIにログイン後、システム/サイト にある「新規作成」</p>
-
-<ul>
-<li><p>サイト名：ブラウザのタブで表示させたいサイトのタイトルを入力する。<br/>
-（htmlで<code>&lt;title&gt;サイト名&lt;/title&gt;</code>と入力する文字）</p></li>
-<li><p>ホスト名</p></li>
-<li><p>ドメイン名</p></li>
-<li><p>グループを選択<br/>
-（このときにグループに追加しないとSHIRASAGI ログイン後の画面に反映されなかった。）</p></li>
-</ul>
-
-
-<h2>レイアウトの作成</h2>
-
-<p>画面左 メインメニュー/レイアウト にある「新規作成」<br/>
-まずはトップページのレイアウトを作成した。</p>
-
-<ul>
-<li><p>レイアウト名：top</p></li>
-<li><p>ファイル名：top.layout.html<br/>
-拡張子<code>.layout.html</code>の入力は省略してもいい。</p></li>
-<li><p>HTML<br/>
-ここにソースコードを入力する。<br/>
-パーツをどの位置に置くかを記述していく。</p></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;html&gt;  
-</span><span class='line'>  &lt;head&gt;  
-</span><span class='line'>  &lt;/head&gt;  
-</span><span class='line'>  &lt;body&gt;  
-</span><span class='line'>    &lt;/ part "news" /&gt;  
-</span><span class='line'>  &lt;/body&gt;  
-</span><span class='line'>&lt;/html&gt;  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>  ※ 5行目の<code>&lt;/ part "news" /&gt;</code>は以下で作成。</p>
-
-<h2>パーツの作成</h2>
-
-<p>画面左 メインメニュー/パーツ にある「新規作成」<br/>
-自分の分かりやすいように適当に入力。</p>
-
-<ul>
-<li><p>パーツ名：お知らせ</p></li>
-<li><p>ファイル名：news.part.html<br/>
-拡張子<code>.part.html</code>の入力は省略してもいい。<br/>
-さっきtop.layout.htmlで<code>&lt;/ part "news" /&gt;</code>と入力したので、ここは<code>news.part.html</code>となる。</p>
-
-<p>？マークをクリックすると「.htmlなどの拡張子の記述は不要です。」と書いてあるので<br/>
-<code>news</code>だけ入力すると「保存」をクリックすれば自動的に拡張子はつく。<br/>
-また、拡張子を省略せずに<code>news.part.html</code>と入力するのは問題ないが、<br/>
-<code>news.part</code>と途中まで入力するとエラーが表示されるので気をつける。</p></li>
-<li><p>HTML<br/>
-ここにソースコードを入力する。</p></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div id="news"&gt;  
-</span><span class='line'>  お知らせ内容  
-</span><span class='line'>&lt;/div&gt;  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで、レイアウトとパーツが繋がった。</p>
-
-<p>サイトメニュー/サイトプレビュー で見てみる。<br/>
-しかし表示されない&hellip;固定ページを作っていなかった。</p>
-
-<h2>固定ページの作成</h2>
-
-<p>画面左 メインメニュー/固定ページ にある「新規作成」</p>
-
-<ul>
-<li><p>タイトル：index</p></li>
-<li><p>ファイル名：index.html<br/>
-拡張子<code>.html</code>の入力は省略してもいい。</p></li>
-<li><p>レイアウト：top<br/>
-ここでさっき作ったレイアウトの<code>top</code>を選択</p></li>
-</ul>
-
-
-<p>もう一度、サイトメニュー/サイトプレビュー で見てみると表示された。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/27/octopress/">Octopressでの記事の書き方</a></h1>
+      <h1 class="entry-title">Octopressでの記事の書き方</h1>
     
     
       <p class="meta">
@@ -267,7 +97,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>記事のひな形の作成</h2>
+<div class="entry-content"><h2>記事のひな形の作成</h2>
 
 <p>コマンドラインで以下を実行すると記事のひな形が生成されます。生成されるひな形のファイル名は <code>source/_posts/YYYY-MM-DD-title.markdown</code> です。</p>
 
@@ -331,18 +161,52 @@
 
 <p>なお、<code>bundle exec rake preview</code> によってwebサーバが起動している間は、記事を保存するとファイルが書き換えられたのが検知され、サイトの再生製が即時行われます。記事執筆中はwebサーバを立ち上げっぱなしにして、 ①少し書いて保存 ②自動で再生成 ③生成されたサイトをブラウザで確認 — のサイクルを繰り返すと作業しやすいと思います。</p>
 </div>
-  
+
+
+  <footer>
+    <p class="meta">
+      
   
 
 
-    </article>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-27T17:38:31+09:00'><span class='date'>2014/11/27</span> <span class='time'>5:38 pm</span></time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/at-g-maeda/'>@g_maeda</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tech.farend.jp//blog/2014/11/27/octopress/" data-via="" data-counturl="http://tech.farend.jp//blog/2014/11/27/octopress/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/12/01/ubuntu-ext-volume/" title="Next Post: ubuntuでの外部ボリュームマウントについて">ubuntuでの外部ボリュームマウントについて &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -351,10 +215,6 @@
     
       <li class="post">
         <a href="/blog/2014/12/01/ubuntu-ext-volume/">ubuntuでの外部ボリュームマウントについて</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/01/shirasagi/">SHIRASAGIで始めにやったこと</a>
       </li>
     
       <li class="post">
@@ -370,6 +230,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
