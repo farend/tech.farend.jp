@@ -4,7 +4,7 @@
   <title><![CDATA[tech.farend]]></title>
   <link href="http://tech.farend.jp//atom.xml" rel="self"/>
   <link href="http://tech.farend.jp//"/>
-  <updated>2014-12-02T11:02:40+09:00</updated>
+  <updated>2015-01-10T14:29:12+09:00</updated>
   <id>http://tech.farend.jp//</id>
   <author>
     <name><![CDATA[]]></name>
@@ -208,6 +208,141 @@
 
 
 <p>なお、<code>bundle exec rake preview</code> によってwebサーバが起動している間は、記事を保存するとファイルが書き換えられたのが検知され、サイトの再生製が即時行われます。記事執筆中はwebサーバを立ち上げっぱなしにして、 ①少し書いて保存 ②自動で再生成 ③生成されたサイトをブラウザで確認 — のサイクルを繰り返すと作業しやすいと思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ファイル名が文字化けして指定出来ない場合の対応]]></title>
+    <link href="http://tech.farend.jp//blog/2013/12/02/rename-by-file-inode/"/>
+    <updated>2013-12-02T13:19:06+09:00</updated>
+    <id>http://tech.farend.jp//blog/2013/12/02/rename-by-file-inode</id>
+    <content type="html"><![CDATA[<p>なんらかの事情でファイル名が文字化けし、指定ができなくなる場合がある（というかそういう場面に遭遇した）。<br/>
+Linuxでは下記の様に表示されるが、Windowsなどでftpツールでログインするとindex.htmlが３つ、report.htmlが３つという訳のわからない状態に見える。<br/>
+ちなみにLinuxでは表示できるが、 <strong>ファイル名を指定することができない</strong> ため何の対応も出来ない。<br/>
+（そもそも同一のフォルダに同じ名前のファイルとか&hellip;）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# ls -la
+</span><span class='line'>合計 244
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge 16959  2月 29 12:25 2012 ??report.html
+</span><span class='line'>-rw-rw-r--.  1 hogehoge hogehoge 16959  2月 24 14:41 2012 ??report.html
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge  8516  2月 29 12:25 2012 ??index.html
+</span><span class='line'>-rw-rw-r--.  1 hogehoge hogehoge  8516  2月 24 14:41 2012 ??index.html
+</span><span class='line'>drwxr-xr-x. 12 hogehoge hogehoge  4096  7月 11 11:51 2013 .
+</span><span class='line'>drwx--x--x.  3 hogehoge    500  4096  7月  1 15:03 2000 ..
+</span><span class='line'>drwxr-xr-x.  6 hogehoge hogehoge  4096  4月  2 20:08 2013 event
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge 12247  4月 29 21:56 2013 event.html
+</span><span class='line'>drwxr-xr-x.  5 hogehoge hogehoge  4096  1月 22 16:16 2013 report
+</span><span class='line'>-rw-r--r--   1 hogehoge hogehoge 16235  7月 11 11:51 2013 report.html
+</span><span class='line'>drwxrwxr-x.  5 hogehoge hogehoge  4096  4月 28 20:02 2013 img
+</span><span class='line'>-rw-r--r--   1 hogehoge hogehoge  9979  7月 11 11:51 2013 index.html</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ファイルinode番号の確認</h2>
+
+<p>この場合はLinuxのファイルinode番号で処理をする。<br/>
+<code>ls</code> コマンドの <code>i</code> オプションをつけると各ファイルのinode番号が表示される。<br/>
+（最初の列がinode番号）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# ls -li
+</span><span class='line'>合計 236
+</span><span class='line'>785288 -rw-r--r--. 1 hogehoge hogehoge 16959  2月 29 12:25 2012 ??report.html
+</span><span class='line'>785214 -rw-rw-r--. 1 hogehoge hogehoge 16959  2月 24 14:41 2012 ??report.html
+</span><span class='line'>785213 -rw-r--r--. 1 hogehoge hogehoge  8516  2月 29 12:25 2012 ??index.html
+</span><span class='line'>785212 -rw-rw-r--. 1 hogehoge hogehoge  8516  2月 24 14:41 2012 ??index.html
+</span><span class='line'>785289 drwxr-xr-x. 6 hogehoge hogehoge  4096  4月  2 20:08 2013 event
+</span><span class='line'>785071 -rw-r--r--. 1 hogehoge hogehoge 12247  4月 29 21:56 2013 event.html
+</span><span class='line'>785016 drwxr-xr-x. 5 hogehoge hogehoge  4096  1月 22 16:16 2013 report
+</span><span class='line'>784916 -rw-r--r--  1 hogehoge hogehoge 16235  7月 11 11:51 2013 report.html
+</span><span class='line'>785072 drwxrwxr-x. 5 hogehoge hogehoge  4096  4月 28 20:02 2013 img
+</span><span class='line'>784915 -rw-r--r--  1 hogehoge hogehoge  9979  7月 11 11:51 2013 index.html</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>inode番号でファイル指定しリネーム</h2>
+
+<p>inode番号で指定するには <code>find</code> コマンドが使いやすい。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# find . -inum 785214
+</span><span class='line'>./??report.html</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>find</code> コマンドに <code>exec</code> オプションをつける事で引数を受け渡してコマンド実行が可能</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# find . -inum 785214 -exec mv {} report._html1 \;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで指定出来なかった <strong>??report.html</strong> の一つが <strong>report._html1</strong> にリネームされる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# ls -la
+</span><span class='line'>合計 244
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge 16959  2月 29 12:25 2012 ??report.html
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge  8516  2月 29 12:25 2012 ??index.html
+</span><span class='line'>-rw-rw-r--.  1 hogehoge hogehoge  8516  2月 24 14:41 2012 ??index.html
+</span><span class='line'>drwxr-xr-x. 12 hogehoge hogehoge  4096  7月 11 12:31 2013 .
+</span><span class='line'>drwx--x--x.  3 hogehoge    500  4096  7月  1 15:03 2000 ..
+</span><span class='line'>drwxr-xr-x.  6 hogehoge hogehoge  4096  4月  2 20:08 2013 event
+</span><span class='line'>-rw-r--r--.  1 hogehoge hogehoge 12247  4月 29 21:56 2013 event.html
+</span><span class='line'>drwxr-xr-x.  5 hogehoge hogehoge  4096  1月 22 16:16 2013 report
+</span><span class='line'>-rw-rw-r--.  1 hogehoge hogehoge 16959  2月 24 14:41 2012 report._html1
+</span><span class='line'>-rw-r--r--   1 hogehoge hogehoge 16235  7月 11 11:51 2013 report.html
+</span><span class='line'>drwxrwxr-x.  5 hogehoge hogehoge  4096  4月 28 20:02 2013 img
+</span><span class='line'>-rw-r--r--   1 hogehoge hogehoge  9979  7月 11 11:51 2013 index.html</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで普通にファイル名でアクセスできる様になるので、その後の処理をすることになる。</p>
+
+<h3>一気に削除するなら</h3>
+
+<p>一気に削除するなら下記のコマンドとなる。
+ただし <code>-i</code> オプションは削除実行の前に確認をするためコワイので、普通はリネームしてから処理することが多いと思われる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[root@xxxx xxxxx]# find . -inum 785214 -exec rm -i {} \;</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
