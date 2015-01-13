@@ -3,7 +3,7 @@ layout: post
 title: "Nginx簡単インストール on ubuntu"
 date: 2015-01-13 17:30:00 +0900
 comments: true
-categories: ['@amidaku', 'ubuntu', 'nginz']
+categories: ['@amidaku', 'ubuntu', 'nginx']
 ---
 
 ubuntuのリポジトリのnginxは古いので新しいものをnginx本家からインストールできる様にする。
