@@ -205,7 +205,7 @@ http://192.168.56.101:3000/.mypage/login
 
 ```
 # rake ss:create_user data='{ name: "システム管理者", email: "sys@example.jp", password: "pass" }'  
-
+```
 
 ### サイトの作成  
 
