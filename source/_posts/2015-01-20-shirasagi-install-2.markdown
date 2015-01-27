@@ -42,14 +42,14 @@ Server built:   Oct 16 2014 14:48:21
 
 ## 2.Rubyのインストール
 
-参考：[Rubyのインストール](https://www.ruby-lang.org/ja/documentation/installation/#building-from-source)
+参考：[Rubyのインストール](https://www.ruby-lang.org/ja/documentation/installation/#building-from-source)  
 以下のコマンドでインストールすると、現時点(2015年1月)では古いバージョン(1.8.7)がインストールされるのでしないように気をつける。
 
 ```
-# yum install ruby
+# yum install ruby ←これはしない！
 ```
 
-今回は「Ruby2.1.2」という指定があるので、次の方法でインストールします。
+今回は「Ruby2.1.2」という指定があるので、次の方法でインストールします。  
 参考：[Ruby2.0をソースからインストールする手順 (CentOS/RedHat)](http://weblabo.oscasierra.net/install-ruby20-to-redhat-1/)
 
 ダウンロードします
@@ -267,6 +267,6 @@ Rails 4.1.6
 
 
 
-これで環境が整いました。
-MongoDBをまだインストールしていませんが、あとで行います。
-（このときにインストールすると手間がかかるため）
+これで環境が整いました。  
+MongoDBをまだインストールしていませんが、あとで行います。  
+（このときにインストールすると手間がかかるため）  
