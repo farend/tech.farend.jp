@@ -115,12 +115,12 @@ gitがないと言われたのでインストールします
 bundle exec unicorn_rails -c /var/www/shirasagi/config/unicorn.rb -E production -D  
 ```
 
-「http://localhost:3000/.mypageにアクセスしてください」と書いてある([インストール手順](http://www.ss-proj.org/download/install.html))  
+「 http://localhost:3000/.mypage にアクセスしてください」と書いてある([インストール手順](http://www.ss-proj.org/download/install.html))  
 
 でも、今はVirtualBox上の仮想マシンなので  
 いつも通りブラウザではアクセスしても表示されません。  
 
-（ちなみにhttp://192.168.56.101:3000/.mypage/にもアクセスできない）  
+（ちなみに http://192.168.56.101:3000/.mypage/ にもアクセスできない）  
 
 ターミナル上でアクセスする  
 
@@ -129,7 +129,7 @@ bundle exec unicorn_rails -c /var/www/shirasagi/config/unicorn.rb -E production 
 <html><body>You are being <a href="http://localhost:3000/.mypage/login">redirected</a>.</body></html>  
 ```
 
-言われた通りにhttp://localhost:3000/.mypage/loginへアクセスする  
+言われた通りに http://localhost:3000/.mypage/login へアクセスする  
 
 ```
 # curl http://localhost:3000/.mypage/login  
