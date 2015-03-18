@@ -9,14 +9,6 @@ categories: ['@amidaku', 'AWS']
 
 普通にインスタンスを作成しアプリケーションほか構築
 
-## ec2-user履歴削除
-
-```
-[ec2-user@xxx ]$ export HISTSIZE=0
-[ec2-user@xxx ]$ history -c
-[ec2-user@xxx ]$ sudo su -
-```
-
 ## サービス停止
 
 自動起動の設定等はそのまま、起動しているデーモン等（特にログを出力するもの）の停止をおこなう。
@@ -24,8 +16,8 @@ categories: ['@amidaku', 'AWS']
 サンプル
 
 ```
-service mysqld stop
-service postfix stop
+[ec2-user@xxx ]$ sudo service mysqld stop
+[ec2-user@xxx ]$ sudo service postfix stop
 ```
 
 ## 重要情報削除
@@ -35,6 +27,16 @@ service postfix stop
 * ログ
 * 操作履歴
 * 個人操作履歴
+
+
+### ec2-user履歴削除
+
+```
+[ec2-user@xxx ]$ export HISTSIZE=0
+[ec2-user@xxx ]$ history -c
+[ec2-user@xxx ]$ sudo su -
+```
+
 
 ### 削除用スクリプト作成
 
@@ -88,8 +90,8 @@ delete.shを削除する。
 rootの履歴を削除する。
 
 ```
-export HISTSIZE=0
-history -c
+[root@xxx ]# export HISTSIZE=0
+[root@xxx ]# history -c
 ```
 
 ## AMIを作成する。
