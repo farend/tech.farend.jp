@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://tech.farend.jp/
+url: http://tech.farend.jp
 title: tech.farend
 subtitle: 技術メモ置き場
-author: 
+author:
 simple_search: https://www.google.com/search
 description:
 
