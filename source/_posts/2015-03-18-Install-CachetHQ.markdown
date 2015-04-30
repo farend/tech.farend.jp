@@ -114,7 +114,7 @@ sudo npm install -g gulp
 
 ```
 mkdir -p ~/cachet.example.com
-git clone https://github.com/cachethq/Cachet.git ~/cachet.example.com
+git clone -b master https://github.com/cachethq/Cachet.git ~/cachet.example.com
 cd cachet.example.com
 ```
 ※cachet.example.com:サイト名
@@ -144,9 +144,9 @@ php artisan migrate
 **CachetHQを動かすにあたり必要なものを自動収集**
 
 ```
-npm isntall
+sudo npm isntall
 bower install 
-gulp
+sudo gulp
 ```
 **エディタで/etc/php5/fpm/pool.d/cachet.confを作成**
 
