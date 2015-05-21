@@ -53,12 +53,10 @@ cp -r app/lang/en app/lang/ja
 ```
 のように編集すると、
 
-{% img ./2015-05-21/component_en.png %}
-
+![component_En](2015-05-21/component_en.png)
 
 赤枠で囲まれた文字が
 
-
-{% img ./2015-05-21/component_ja.png %}
+![component_Ja](2015-05-21/component_ja.png)
 
 日本語化されます。
