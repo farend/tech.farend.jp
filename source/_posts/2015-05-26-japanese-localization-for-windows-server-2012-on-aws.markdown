@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "Windows Server 2012 on AWS の日本語化"
