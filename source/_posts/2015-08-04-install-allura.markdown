@@ -9,12 +9,15 @@ categories: ['@y_fujie', 'allura']
 SubversionやGitなどのリポジトリをブラウザ上で一元管理する「Allura」のインストール手順です。
 
 ##環境設定
+
 Alluraの構築に必要なパッケージをインストールします。
 
 ```
 sudo apt-get install git-core default-jre-headless python-dev libssl-dev libldap2-dev libsasl2-dev libjpeg8-dev zlib1g-dev subversion python-svn
 ```
+
 ##MongoDBインストール
+
 MongoDBのインストール手順です。
 
 ```
@@ -24,7 +27,9 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo service mongod start
 ```
+
 ##Pythonインストール
+
 pipをインストールし、さらに必要なパッケージをインストールします。
 
 ```
@@ -33,14 +38,18 @@ sudo pip install virtualenv
 virtualenv env-allura
 . env-allura/bin/activate
 ```
+
 ##Allura環境準備
+
 Alluraのログを格納する環境準備です。
 
 ```
 sudo mkdir -p /var/log/allura
 sudo chown $(whoami) /var/log/allura
 ```
+
 ##Alluraインストール
+
 Allura本体をgitからクローニングし、必要なパッケージをインストールします。
 
 ```
@@ -51,13 +60,17 @@ cd allura
 pip install -r requirements.txt
 ln -s /usr/lib/python2.7/dist-packages/pysvn ~/env-allura/lib/python2.7/site-packages/
 ```
+
 ###全部インストール
+
 プラグインツールを全てインストールします。
 
 ```
 ./rebuild-all.bash # ALL build
 ```
+
 ###部分インストール
+
 必要なプラグインのみインストールします。
 src/allura以下ににツールのディレクトリがあります。以下の２つは必須ツールです。
 
@@ -67,14 +80,18 @@ python setup.py develop
 cd ../ForgeWiki
 python setup.py develop
 ```
+
 同様に
 
 ```
 cd ツール名
 python setup.py develop
 ```
+
 で追加ツールをインストールできます。
+
 ##Solrインストール
+
 Apache Solrのインストールを行います。
 
 ```
@@ -87,6 +104,7 @@ nohup java -jar start.jar > /var/log/allura/solr.log &
 ```
 
 ##リポジトリ領域作成
+
 各種リポジトリを保存する領域を作成します。
 
 ```
@@ -94,7 +112,9 @@ sudo mkdir /srv/{git,svn,hg}
 sudo chown $USER /srv/{git,svn,hg}
 sudo chmod 775 /srv/{git,svn,hg}
 ```
+
 ##Allura起動
+
 Alluraを起動します。
 
 ```
@@ -111,12 +131,16 @@ nohup paster serve --reload development.ini > /var/log/allura/allura.log 2>&1 &
 ```
 sudo apt-get -y install sysv-rc-conf
 ```
+
 ###起動スクリプト
+
 ALLURADIRと SOLRDIRは適宜変更してください。
 以下は"user_allura"というユーザーのホームディレクトリにAlluraがインストールされている場合です。
 
 
-```sudo vim /etc/init.d/allura```
+```
+sudo vim /etc/init.d/allura
+```
 
 ```
 #!/bin/bash
