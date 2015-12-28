@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Clam Antivirusのインストールと使用例"
+title: "Clam Antivirusの導入方法"
 date: 2015-12-15 11:10:00 +0900
 comments: true
 categories: ['@y_fujie', 'CalmAV', 'ubuntu']
