@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "Clam Antivirusの導入方法"
@@ -32,36 +31,39 @@ sudo freshclam
 
 ##使用例
 
-ClamAVにはウイルススキャンを行う *clamscan* と、
-デーモンとして常駐させておきウイルススキャンする *clamdscan* があります。
-*clamscan* では実行の度に定義データベースの読み込みを行いますが、 *clamdscan* ではデーモンの起動時にのみ定義データベースの読み込みを行います。
+ClamAVにはウイルススキャンを行う `clamscan` と、
+デーモンとして常駐させておきウイルススキャンする `clamdscan` があります。
+`clamscan` では実行の度に定義データベースの読み込みを行いますが、 `clamdscan` ではデーモンの起動時にのみ定義データベースの読み込みを行います。
 
-###clamscanによるスキャンの実行
+ClamAVにはローカルでウイルススキャンを行うclamscanと、
+デーモンとして常駐させておき特定のIPを持つ端末をウイルススキャンするclamdscanがあります。
+
+###clamscanによるフルスキャンの実行
 
 ```
-sudo clamscan
+sudo clamscan -r / -l /var/log/clamscan.log --exclude-dir=/sys/ -i --quiet
 ```
 
 ###clamdscanによるスキャンの実行
 
 ```
 sudo clamd  //デーモンの起動
-sudo clamdscan
+sudo clamdscan / -l /var/log/clamdscan.log -i --quiet
 ```
 
 **clamdscan実行時に権限エラーが出る場合**
 
-*/etc/clamav/clamd.conf* の *User clamav* を *User root* 等に書き換えてください。
+`/etc/clamav/clamd.conf` の `User clamav` を `User root` 等に書き換えてください。
 
-###clamscanで定期的にフルスキャンさせる
+###clamscanで定期的にスキャンさせる
 
-*freshclam* を毎日実行するようデーモンとして常駐させます。
+`freshclam` を毎日実行するようデーモンとして常駐させます。
 
 ```
 freshclam -d
 ```
 
-*clamscan.sh* を作成します。
+`clamscan.sh` を作成します。
 
 ```
 #!/bin/sh
