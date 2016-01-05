@@ -1,3 +1,4 @@
+
 ---
 layout: post
 title: "Clam Antivirusの導入方法"
@@ -31,9 +32,9 @@ sudo freshclam
 
 ##使用例
 
-ClamAVにはウイルススキャンを行う ```clamscan``` と、
-デーモンとして常駐させておきウイルススキャンする ```clamdscan``` があります。
-```clamscan``` では実行の度に定義データベースの読み込みを行いますが、 ```clamdscan``` ではデーモンの起動時にのみ定義データベースの読み込みを行います。
+ClamAVにはウイルススキャンを行う *clamscan* と、
+デーモンとして常駐させておきウイルススキャンする *clamdscan* があります。
+*clamscan* では実行の度に定義データベースの読み込みを行いますが、 *clamdscan* ではデーモンの起動時にのみ定義データベースの読み込みを行います。
 
 ###clamscanによるスキャンの実行
 
@@ -50,17 +51,17 @@ sudo clamdscan
 
 **clamdscan実行時に権限エラーが出る場合**
 
-```/etc/clamav/clamd.conf``` の ```User clamav``` を ```User root``` 等に書き換えてください。
+*/etc/clamav/clamd.conf* の *User clamav* を *User root* 等に書き換えてください。
 
 ###clamscanで定期的にフルスキャンさせる
 
-```freshclam``` を毎日実行するようデーモンとして常駐させます。
+*freshclam* を毎日実行するようデーモンとして常駐させます。
 
 ```
 freshclam -d
 ```
 
-```clamscan.sh``` を作成します。
+*clamscan.sh* を作成します。
 
 ```
 #!/bin/sh

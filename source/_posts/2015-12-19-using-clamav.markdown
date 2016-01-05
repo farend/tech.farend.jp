@@ -39,6 +39,7 @@ categories: ['@y_fujie', 'ClamAV', 'ubuntu']
 
        clamscan -r / -l /var/log/clamscan.log --exclude-dir=/sys/ -i --quiet
 ```              
+
 ## clamdscan
 
 ```
